@@ -11,12 +11,12 @@
     <div class="wrapper">
       <section class="modal-form">
         <article class="actionBtns">
-          <button class="actBtn signupBtn">Signup</button>
+          <button class="actBtn singupBtn">Singup</button>
           <button class="actBtn loginBtn">Login</button>
           <button class="moveBtn">Signup</button>
         </article>
         <article class="userForm">
-          <form action="" class="form">
+          <form action="" class="form singup singupForm">
             <div class="inputGroup">
               <label for="fname"></label>
               <input
@@ -68,6 +68,30 @@
               />
             </div>
             <button class="submit" type="submit">Signup</button>
+          </form>
+
+          <form action="" class="form login">
+            <div class="inputGroup">
+              <label for="email"></label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="your email"
+                autocomplete="off"
+              />
+            </div>
+            <div class="inputGroup">
+              <label for="pwd"></label>
+              <input
+                type="password"
+                id="pwd"
+                name="pwd"
+                placeholder="your password"
+                autocomplete="off"
+              />
+            </div>
+            <button class="submit" type="submit">Login</button>
           </form>
         </article>
       </section>
