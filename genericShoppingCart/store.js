@@ -1,9 +1,12 @@
 /* Через те, що в файлі html-store у підключенні script було виставлено async
 що означає асинхронну дію:  під час завантаження елеменів body, script вантажиться також
-Отже, щоб мати доступ до елементів, необхідно щоб сторінка вже завантажувалась 
-або була завантажена, для цього задається умова: */
+Отже, щоб мати доступ до елементів, необхідно щоб сторінка вже була завантажена, для цього задається умова: */
 if (document.readyState == 'loading') {
+  // чекати доки не завантажиться сторінка (елементи body)
   document.addEventListener('DOMContentLoaded', ready);
+} else {
+  // має доступ до елементів бо сторінка була вже завантажена
+  ready();
 }
 
 function ready() {
@@ -12,13 +15,15 @@ function ready() {
   // пройдемось по колекції та отримавши кнопку навішаємо на неї подію
   for (var i = 0; i < removeCartItemButtons.length; i++) {
     var button = removeCartItemButtons[i]; // визначимо саму кнопку
-    button.addEventListener('click', function (event) {
-      buttonClicked = event.target; // визначимо ту кнопку, яка була натиснута
-      // видаляємо кнопку з цілого ряда, бо вона в ряді має два батьківських елемента
-      buttonClicked.parentElement.parentElement.remove();
-      updateCartTotal(); // також обновляєм загальну кількість після видалення
-    });
+    button.addEventListener('click', removeCartItem);
   }
+}
+
+function removeCartItem(event) {
+  buttonClicked = event.target; // визначимо ту кнопку, яка була натиснута
+  // видаляємо кнопку з цілого ряда, бо вона в ряді має два батьківських елемента
+  buttonClicked.parentElement.parentElement.remove();
+  updateCartTotal(); // також обновляєм загальну кількість після видалення
 }
 
 // треба пройтись по усіх рядах, знайти вартість і помножити на кількість та відобразити
