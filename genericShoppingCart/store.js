@@ -33,6 +33,22 @@ function ready() {
     var button = addToCartButtons[i]; // визначимо саму кнопку додавання в корзину
     button.addEventListener('click', addToCartClicked); // навісили подію 'по-кліку'
   }
+
+  // для функціоналу купівлі, отримаємо кнопку купівлі та навішуємо на неї подію
+  document
+    .getElementsByClassName('btn-purchase')[0]
+    .addEventListener('click', purchaseClicked);
+}
+
+function purchaseClicked() {
+  alert('Thank you for your purchase');
+  // очищаємо корзину від придбаних товарів, спочатку отримаємо місце в корзині
+  var cartItems = document.getElementsByClassName('cart-items')[0];
+  // проходимось по усіх елементах корзини та видаляємо в ній усі дочірні елементи
+  while (cartItems.hasChildNodes()) {
+    cartItems.removeChild(cartItems.firstChild);
+  }
+  updateCartTotal(); // також обнуляєм поле загальної вартості після видалення}
 }
 
 function removeCartItem(event) {
