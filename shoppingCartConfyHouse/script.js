@@ -51,7 +51,7 @@ class UI {
               class="product-img"
             />
             <button class="bag-btn" data-id=${product.id}>
-              <i class="fas fa-shopping-cart">add to bag</i>
+              <i class="fas fa-shopping-cart">add to cart</i>
             </button>
           </div>
           <h3>${product.title}</h3>
@@ -64,7 +64,7 @@ class UI {
   }
   getAddToBagBtns() {
     const buttons = [...document.querySelectorAll('.bag-btn')]; // перетворюємо nodeList в Array за допомогою spred-operators
-    buttonsDOM = buttons;
+    buttonsDOM = buttons; // присвоїли усі кнопки, які є в додатку масиву buttonsDOM
     buttons.forEach((button) => {
       let id = button.dataset.id;
       let inCart = cart.find((item) => item.id === id);
@@ -93,6 +93,7 @@ class UI {
       });
     });
   }
+  // функція підрахунку загальної вартості та загальної кількості товарів в корзині
   setCartValues(cart) {
     let tempTotal = 0; // загальна вартість товарів в корзині
     let itemsTotal = 0; // заг кількість одиниць товару в корзині
@@ -103,6 +104,7 @@ class UI {
     cartTotal.innerText = parseFloat(tempTotal.toFixed(2));
     cartItems.innerText = itemsTotal;
   }
+  // функція динамічного створення товару та відображення його в корзині
   addCartItem(item) {
     const div = document.createElement('div');
     div.classList.add('cart-item');
@@ -142,6 +144,38 @@ class UI {
     cartOverlay.classList.remove('transparentBcg');
     cartDOM.classList.remove('showCart');
   }
+  // функція запуску логіки дій з одиницями товару в середині корзини
+  cartLogic() {
+    clearCartBtn.addEventListener('click', () => {
+      this.clearCart();
+    });
+  }
+  // підфункція очистки всієї корзини
+  clearCart() {
+    // отримати усі одиниці товару по їх id (це масив з id)
+    let cartItems = cart.map((item) => item.id);
+    // проходимось по цьому масиву та видаляємо товар по його іd
+    cartItems.forEach((id) => this.removeItem(id));
+    // видаляємо також з DOM
+    while (cartContent.children.length > 0) {
+      cartContent.removeChild(cartContent.children[0]);
+    }
+    this.hideCart(); // і в кінці ховаємо корзину
+  }
+  // підфункція видалення товару з корзини
+  removeItem(id) {
+    cart = cart.filter((item) => item.id !== id);
+    this.setCartValues(cart); // також виставляємо загальну вартість та кількість
+    Storage.saveCart(cart); // записуємо очищену корзину в localStorage
+    // 3и нижні - застосуємо метод перезапису кнопки що товар "IN CART"/"ADD TO BAG"
+    let button = this.getSingleButton(id);
+    button.disabled = false;
+    button.innerHTML = `<i class="fas fa-shopping-cart"></i>add to cart`;
+  }
+  // підфункція отримання кнопки при перезапису метода кнопки "IN CART"/"ADD TO BAG" при видаленні товару з корзини
+  getSingleButton(id) {
+    return buttonsDOM.find((button) => button.dataset.id === id);
+  }
 }
 
 // дані з пам'яті браузера - localeStorage
@@ -173,7 +207,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const ui = new UI();
   const products = new Products();
 
-  // запуск для доступу до усіх елементів DOM
+  // функція запуску доступу до усіх елементів DOM
   ui.setupAPP();
 
   // отримуємо усі товари
@@ -185,5 +219,6 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     .then(() => {
       ui.getAddToBagBtns();
+      ui.cartLogic();
     });
 });
