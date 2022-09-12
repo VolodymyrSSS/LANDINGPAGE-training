@@ -36,7 +36,7 @@ class Products {
   }
 }
 
-// відображення товарів на сторінці
+// відображення/рендерінг товарів на сторінці
 class UI {
   displayProducts(products) {
     let result = '';
@@ -62,7 +62,7 @@ class UI {
     });
     productsDOM.innerHTML = result;
   }
-  getAddToBagBtns() {
+  getAddToCartBtns() {
     const buttons = [...document.querySelectorAll('.bag-btn')]; // перетворюємо nodeList в Array за допомогою spred-operators
     buttonsDOM = buttons; // присвоїли усі кнопки, які є в додатку масиву buttonsDOM
     buttons.forEach((button) => {
@@ -96,7 +96,7 @@ class UI {
   // функція підрахунку загальної вартості та загальної кількості товарів в корзині
   setCartValues(cart) {
     let tempTotal = 0; // загальна вартість товарів в корзині
-    let itemsTotal = 0; // заг кількість одиниць товару в корзині
+    let itemsTotal = 0; // заг кількість одиниць товару(кругляшок корзини)
     cart.map((item) => {
       tempTotal += item.price * item.amount;
       itemsTotal += item.amount;
@@ -104,7 +104,7 @@ class UI {
     cartTotal.innerText = parseFloat(tempTotal.toFixed(2));
     cartItems.innerText = itemsTotal;
   }
-  // функція динамічного створення товару та відображення його в корзині
+  // функція динамічного створення одиниці товару та відображення/додавання в корзинy
   addCartItem(item) {
     const div = document.createElement('div');
     div.classList.add('cart-item');
@@ -123,31 +123,62 @@ class UI {
             `;
     cartContent.appendChild(div);
   }
-  // функція відображення корзини
+  // під-функція відображення самої корзини
   showCart() {
     cartOverlay.classList.add('transparentBcg');
     cartDOM.classList.add('showCart');
   }
   setupAPP() {
     cart = Storage.getCart(); // перевірка, чи є якісь значення в корзині та отримуємо її
-    this.setCartValues(cart); // якщо в корзині є товари, то визначити параметри загальної вартості та загальної кількості
-    this.populateCart(cart); // запускає якщо додаємо товар в корзину
-    cartBtn.addEventListener('click', this.showCart); // по кліку показуємо корзину
-    closeCartBtn.addEventListener('click', this.hideCart); // по кліку ховаємо корзину
+    this.setCartValues(cart); // якщо в корзині є товари, то визначити параметри загальної вартості та загальної кількості(кругляшок корзини)
+    this.populateCart(cart); // додаємо товар в корзину
+    cartBtn.addEventListener('click', this.showCart); // показуємо корзину
+    closeCartBtn.addEventListener('click', this.hideCart); // ховаємо корзину
   }
-  // функція додавання товару в корзину
+  // під-функція додавання товару в корзину
   populateCart(cart) {
     cart.forEach((item) => this.addCartItem(item));
   }
-  // функція приховання корзини
+  // під-функція приховання корзини
   hideCart() {
     cartOverlay.classList.remove('transparentBcg');
     cartDOM.classList.remove('showCart');
   }
   // функція запуску логіки дій з одиницями товару в середині корзини
   cartLogic() {
+    // очистка усієї корзини
     clearCartBtn.addEventListener('click', () => {
       this.clearCart();
+    });
+    // збільшення/зменшення/видалення одиниць товару в середині корзини
+    cartContent.addEventListener('click', (event) => {
+      if (event.target.classList.contains('remove-item')) {
+        let removeItem = event.target; // отримаємо подію
+        let id = removeItem.dataset.id; // отримаємо id
+        cartContent.removeChild(removeItem.parentElement.parentElement); // видаляємо з DOM
+        this.removeItem(id); // видаляємо по id
+      } else if (event.target.classList.contains('fa-chevron-up')) {
+        let increaseAmount = event.target; // отримаємо подію
+        let id = increaseAmount.dataset.id; // отримаємо id
+        let tempItem = cart.find((item) => item.id === id); // створюєм проміжне значення що буде братись для обчислень
+        tempItem.amount = tempItem.amount + 1; // збільшуємо кількість
+        Storage.saveCart(cart); // обновлюємо кількість в пам'яті браузера
+        this.setCartValues(cart); // обновляємо кількість в полях корзини загальної вартості та загальної кількості(кругляшок корзини)
+        increaseAmount.nextElementSibling.innerText = tempItem.amount; // обновляємо кількість в полі самої одиниці товару корзини
+      } else if (event.target.classList.contains('fa-chevron-down')) {
+        let decreaseAmount = event.target; // отримаємо подію
+        let id = decreaseAmount.dataset.id; // отримаємо id
+        let tempItem = cart.find((item) => item.id === id); // створюєм проміжне значення що буде братись для обчислень
+        tempItem.amount = tempItem.amount - 1; // зменшуємо кількість
+        if (tempItem.amount > 0) {
+          Storage.saveCart(cart); // обновлюємо кількість в пам'яті браузера
+          this.setCartValues(cart); // обновляємо кількість в полях корзини загальної вартості та загальної кількості(кругляшок корзини)
+          decreaseAmount.previousElementSibling.innerText = tempItem.amount; // обновляємо кількість в полі самої одиниці товару корзини
+        } else {
+          cartContent.removeChild(decreaseAmount.parentElement.parentElement); // видаляємо з DOM
+          this.removeItem(id); // видаляємо по id
+        }
+      }
     });
   }
   // підфункція очистки всієї корзини
@@ -164,15 +195,15 @@ class UI {
   }
   // підфункція видалення товару з корзини
   removeItem(id) {
-    cart = cart.filter((item) => item.id !== id);
-    this.setCartValues(cart); // також виставляємо загальну вартість та кількість
+    cart = cart.filter((item) => item.id !== id); // видаляємо товар
+    this.setCartValues(cart); // видаляємо загальну вартість та кількість
     Storage.saveCart(cart); // записуємо очищену корзину в localStorage
-    // 3и нижні - застосуємо метод перезапису кнопки що товар "IN CART"/"ADD TO BAG"
+    // перезапис назви кнопки з "IN CART" на "ADD TO CART"
     let button = this.getSingleButton(id);
     button.disabled = false;
     button.innerHTML = `<i class="fas fa-shopping-cart"></i>add to cart`;
   }
-  // підфункція отримання кнопки при перезапису метода кнопки "IN CART"/"ADD TO BAG" при видаленні товару з корзини
+  // підфункція отримання кнопки по її id
   getSingleButton(id) {
     return buttonsDOM.find((button) => button.dataset.id === id);
   }
@@ -181,28 +212,28 @@ class UI {
 // дані з пам'яті браузера - localeStorage
 class Storage {
   static saveProducts(products) {
-    // встановлюємо пару ключ-значення, і при цьому значення перевод в JSON-формат
+    // встановлюємо пару ключ-значення та переведення в JSON-формат
     localStorage.setItem('products', JSON.stringify(products));
   }
   static getProduct(id) {
-    // спочатку отримуємо переведений в Array розпарсений список товарів
+    // отримуємо переведений в Array розпарсений список товарів
     let products = JSON.parse(localStorage.getItem('products'));
     // поветраємо той товар, який був обраний(знайдений) по його id
     return products.find((product) => product.id === id);
   }
   static saveCart(cart) {
-    // встановлюємо пару ключ-значення, і значення переводимо в JSON-формат
+    // встановлюємо пару ключ-значення та переведення в JSON-формат
     localStorage.setItem('cart', JSON.stringify(cart));
   }
   static getCart() {
-    // перевірка чи в корзині є якісь значення/товари чи нічого не має
+    // отримання корзини з одночасною перевіркою чи є в корзині якісь значення/товари чи нічого не має
     return localStorage.getItem('cart')
       ? JSON.parse(localStorage.getItem('cart'))
       : [];
   }
 }
 
-// через це усе починається та усе пов'язує
+// запуск усього функціоналу додавання товарів в корзину
 document.addEventListener('DOMContentLoaded', () => {
   const ui = new UI();
   const products = new Products();
@@ -218,7 +249,7 @@ document.addEventListener('DOMContentLoaded', () => {
       Storage.saveProducts(products); // беремо товари з localeStorage як просто клас а не інстант, бо в методі є static, крім того, застосовуєм коли сторінка вже завантажиться
     })
     .then(() => {
-      ui.getAddToBagBtns();
+      ui.getAddToCartBtns();
       ui.cartLogic();
     });
 });
