@@ -1,5 +1,11 @@
-// variables
+// get the client library
+var client = contentful.createClient({
+  // It needed an API key and a space ID to initialize a client
+  space: 'n6uh6zfvi8dp',
+  accessToken: 'Gxwo5_OTqQSZ_T8yOY3dLna3Kj2RwFzSoakP5_XnGj4',
+});
 
+// variables
 const cartBtn = document.querySelector('.cart-btn');
 const closeCartBtn = document.querySelector('.close-cart');
 const clearCartBtn = document.querySelector('.clear-cart');
@@ -18,10 +24,17 @@ let buttonsDOM = [];
 class Products {
   async getProducts() {
     try {
-      let result = await fetch('products.json');
-      let data = await result.json(); // отримати в json-форматі
+      /* entry_id = '4LLx7NUJCN9XyjN2sH0EDk' В Content Model закладці знаходимо в правій половині вікна розділ де в полі  CONTENT TYPE ID, це {'comfyHouseProducts'}*/
+      let contentful = await client.getEntries({
+        content_type: 'comfyHouseProducts',
+      });
+      console.log(contentful);
 
-      let products = data.items; // отримаємо властивість items з json-файла
+      let products = contentful.items; // отримаємо властивість items з json-файла CMS Contentful
+
+      //   let result = await fetch('products.json'); // отримання з локальної машини
+      //   let data = await result.json(); // отримати в json-форматі локальної машини
+      //   let products = data.items; // отримаємо властивість items з json-файла локальної машини
       // отримати значення полів з структури json-файла
       products = products.map((item) => {
         const { title, price } = item.fields;
