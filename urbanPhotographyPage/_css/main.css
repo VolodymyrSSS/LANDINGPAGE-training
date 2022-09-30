@@ -212,3 +212,32 @@ strong {
 em {
   font-style: italic;
 }
+
+/*Basic layout styles -----------------------------------------------------------------------------------------------------------*/
+
+body {
+  width: 1280px;
+  margin: 0 auto;
+}
+
+header {
+  height: 165px;
+}
+
+article {
+  float: left;
+  width: 850px;
+  padding-left: 50px;
+}
+
+aside {
+  float: right;
+  width: 280px;
+  padding-right: 50px;
+}
+
+#pageFooter {
+  clear: both;
+  overflow: hidden;
+  height: 150px;
+}
