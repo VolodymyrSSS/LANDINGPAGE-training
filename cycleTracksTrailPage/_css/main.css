@@ -117,3 +117,56 @@ footer#pageFooter {
   clear: both;
   overflow: auto;
 }
+
+/*-------------presentation styles---------------*/
+
+/*dates styles*/
+.pubdate {
+  text-align: right;
+  color: #666;
+  font-size: 0.9em;
+  font-style: italic;
+}
+
+/*header styles*/
+header#mainHeader {
+  background: url(../_images/tracks-logo.gif) no-repeat;
+  padding: 75px 0 0 245px;
+  position: relative;
+  border-bottom: 2px solid #7f7f7f;
+  margin-bottom: 1em;
+}
+header#mainHeader nav {
+  position: absolute;
+  left: 225px;
+  top: 0;
+  padding-top: 15px;
+}
+header#mainHeader ul {
+  float: left;
+}
+header#mainHeader ul li {
+  float: left;
+}
+header#mainHeader ul li a {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.2em;
+  color: #000;
+  padding: 0 20px;
+  text-decoration: none;
+}
+header#mainHeader ul li a.current {
+  color: #cb7d20;
+}
+header#mainHeader ul li a:hover {
+  color: #cb7d20;
+}
+header#mainHeader h1 {
+  font-size: 6em;
+  color: #7f7f7f;
+  font-weight: normal;
+}
+header#mainHeader p {
+  font-weight: normal;
+  font-size: 2em;
+}
