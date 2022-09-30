@@ -241,3 +241,92 @@ aside {
   overflow: hidden;
   height: 150px;
 }
+
+/* Content region styles -----------------------------------------------------------------------------------------------------------*/
+
+/*header styles*/
+header {
+  background: rgb(100, 98, 102);
+  padding-top: 1px;
+  overflow: hidden;
+  margin-bottom: 1.5em;
+  padding-left: 50px;
+}
+header h1 {
+  font-size: 3.2em;
+  font-weight: bold;
+  text-transform: uppercase;
+  line-height: 165px;
+  margin-right: 0.5em;
+  float: left;
+  padding-left: 110px;
+  background: url(../_images/desolve_logo.png) no-repeat left center;
+  color: #fff;
+}
+header h2 {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 1.4em;
+  color: #fff;
+  float: left;
+  text-transform: lowercase;
+  letter-spacing: 0.1em;
+  line-height: 165px;
+}
+header a,
+header a:hover {
+  color: #fff;
+  border: none;
+}
+
+/*nav styles*/
+#mainNav {
+  overflow: hidden;
+  margin-bottom: 1.5em;
+  padding-left: 50px;
+}
+
+#mainNav li {
+  float: left;
+  margin-right: 3.6em;
+}
+
+#mainNav a {
+  text-transform: uppercase;
+  display: block;
+  color: rgb(76, 67, 65);
+  border: none;
+  font-size: 1.2em;
+  text-align: center;
+}
+
+#mainNav a:hover {
+  color: rgb(219, 126, 64);
+}
+
+#mainNav a em {
+  font-size: 0.8em;
+  display: block;
+  text-transform: lowercase;
+  color: rgb(76, 67, 65);
+}
+
+a.gallery {
+  background: url(../_images/icon_sprites_25.png) no-repeat 0 3px;
+  padding-left: 22px;
+}
+
+a.gear {
+  background: url(../_images/icon_sprites_25.png) no-repeat 38px -98px;
+  padding-left: 22px;
+}
+
+a.interact {
+  background: url(../_images/icon_sprites_25.png) no-repeat 62px -197px;
+  padding-left: 24px;
+}
+
+a.shop {
+  background: url(../_images/icon_sprites_25.png) no-repeat 6px -297px;
+  padding-left: 20px;
+}
