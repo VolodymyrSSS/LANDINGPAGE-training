@@ -90,3 +90,30 @@ nav ul,
 ul.menu {
   list-style: none;
 }
+
+/* layout styles */
+header#mainHeader {
+  height: 185px;
+}
+main {
+  float: left;
+  width: 600px;
+  padding: 0 10px 0 25px;
+  margin-bottom: 2em;
+}
+section#riderReviews {
+  float: right;
+  clear: right;
+  width: 450px;
+  margin-bottom: 0;
+}
+aside#adCopy {
+  float: right;
+  clear: right;
+  width: 450px;
+  margin-bottom: 1em;
+}
+footer#pageFooter {
+  clear: both;
+  overflow: auto;
+}
