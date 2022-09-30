@@ -77,3 +77,16 @@ summary {
 html {
   background: #ddd;
 }
+body {
+  font: 100% Georgia, 'Times New Roman', Times, serif;
+  width: 1100px;
+  margin: 0 auto;
+  padding: 0 50px;
+  text-align: left;
+  position: relative;
+  background: white;
+}
+nav ul,
+ul.menu {
+  list-style: none;
+}
