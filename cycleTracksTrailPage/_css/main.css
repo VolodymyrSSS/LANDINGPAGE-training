@@ -1,0 +1,79 @@
+@charset "UTF-8";
+
+/*color guide:
+#e1d8b9 sand
+#cb7d20 orange
+#952 accent orange (dark)
+#3c6b92 main blue
+#2c566a teal
+#c3cebc light green
+#7f7f7f accent gray
+*/
+
+/*limited reset*/
+html,
+body,
+div,
+section,
+article,
+aside,
+header,
+hgroup,
+footer,
+nav,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+address,
+time,
+span,
+em,
+strong,
+img,
+ol,
+ul,
+li,
+figure,
+canvas,
+video,
+th,
+td,
+tr {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+a {
+  text-decoration: none;
+  color: #cb7d20;
+}
+a:hover {
+  color: #952;
+}
+
+/*html5 display rule*/
+address,
+article,
+aside,
+canvas,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+nav,
+menu,
+nav,
+section,
+summary {
+  display: block;
+}
+html {
+  background: #ddd;
+}
