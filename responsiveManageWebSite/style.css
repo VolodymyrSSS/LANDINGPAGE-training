@@ -354,6 +354,66 @@ input:where([type='text'], [type='email']) {
   }
 }
 
+/* numbered services */
+.numbered-services {
+  counter-reset: count;
+  width: fit-content;
+  margin-inline: auto;
+}
+.numbered-services li {
+  counter-increment: count;
+}
+.numbered-services div {
+  display: grid;
+  grid-template-columns: min-content 1fr 1fr;
+  align-items: center;
+  column-gap: var(--size-400);
+  position: relative;
+}
+.numbered-services div::before,
+.numbered-services div::after {
+  height: 40px;
+}
+.numbered-services div::before {
+  content: '0' counter(count);
+  display: flex;
+  align-items: center;
+  color: var(--clr-neutral-100);
+  font-weight: var(--fw-bold);
+  background-color: var(--clr-accent-400);
+  padding: 0 var(--size-500);
+  border-radius: 100vw;
+  grid-row: 1 / 2;
+  grid-column: 1 / 2;
+}
+.numbered-service__title {
+  grid-row: 1 / 2;
+  grid-column: 2 / 3;
+  line-height: 1;
+}
+.numbered-service__body {
+  grid-column: 1 / -1;
+}
+
+@media (min-width: 30em) {
+  .numbered-service__body {
+    grid-column: 2 / -1;
+  }
+}
+@media (max-width: 30em) {
+  .numbered-services div::after {
+    --bg: var(--clr-accent-100);
+    content: '';
+    display: block;
+    z-index: -1;
+    border-radius: 100vw 0 0 100vw;
+    grid-column: 1 / -1;
+    grid-row: 1 / 2;
+    box-shadow: 5em 0 0 var(--bg);
+    background: var(--bg);
+  }
+}
+
 /* utility classes */
 .visually-hidden {
   position: absolute;
@@ -372,6 +432,20 @@ input:where([type='text'], [type='email']) {
 
   width: min(var(--max-width), 100% - (var(--padding) * 2));
   margin-inline: auto;
+}
+.text-center {
+  text-align: center;
+}
+.text-center p {
+  margin-inline: auto;
+}
+@media (max-width: 50em) {
+  .text-center-sm-only {
+    text-align: center;
+  }
+  .text-center-sm-only p {
+    margin-inline: auto;
+  }
 }
 
 :where(.flow :not(:first-child)) {
@@ -464,6 +538,9 @@ input:where([type='text'], [type='email']) {
 }
 .padding-block-700 {
   padding-block: var(--size-700);
+}
+.margin-bottom-700 {
+  margin-block-end: var(--size-700);
 }
 .display-sm-none {
   display: none;
