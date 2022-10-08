@@ -11,6 +11,10 @@
       href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700&family=Poppins:wght@400;500;600&family=Roboto:ital,wght@0,400;0,500;1,700&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/flickity@2/dist/flickity.min.css"
+    />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -142,9 +146,53 @@
         </div>
       </section>
 
-      <section class="carousel padding-block-700">
+      <section class="carousel | padding-block-700 text-center">
         <h2 class="fs-secondary-heading fw-bold">What they've said</h2>
-        <!--Carousel here-->
+        <!-- Slideshow container -->
+        <div
+          class="main-carousel"
+          data-flickity='{ "cellAlign": "left", "contain": true, "freeScroll": true }'
+        >
+          <div class="carousel-cell">
+            <img src="images/avatar-ali.png" alt="avatar of Ali Bravo" />
+            <h3 class="fw-bold">Ali Bravo</h3>
+            <p>
+              "We have been able to cansel so many other subscriptions since
+              using Manage. There is no more cross-channels confusion and
+              everyone is much more focused."
+            </p>
+          </div>
+          <div class="carousel-cell">
+            <img src="images/avatar-anisha.png" alt="avatar of Anisha Li" />
+            <h3 class="fw-bold">Anisha Li</h3>
+            <p>
+              "Manage has supercharged our team's workflow. The ability to
+              maintain visability on large milestones at all times keeps
+              everyone motivated."
+            </p>
+          </div>
+          <div class="carousel-cell">
+            <img
+              src="images/avatar-richard.png"
+              alt="avatar of Richard Watts"
+            />
+            <h3 class="fw-bold">Richard Watts</h3>
+            <p>
+              "Manage allows us to provide structure and process. It keeps us
+              organized and focused. I can't stop recommending them to everyone
+              I talked to."
+            </p>
+          </div>
+          <div class="carousel-cell">
+            <img src="images/avatar-shanai.png" alt="avatar of Shanai Gough" />
+            <h3 class="fw-bold">Shanai Gough</h3>
+            <p>
+              "Theit software allows us to track, manage and collaborate on our
+              projects from anywhere. It keeps the whole team in sync-mode
+              without being intrusive."
+            </p>
+          </div>
+        </div>
         <button class="button">Get Started</button>
       </section>
 
@@ -253,5 +301,6 @@
     </footer>
 
     <script type="module" src="/main.js"></script>
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
   </body>
 </html>

@@ -7,7 +7,8 @@
   --clr-primary-400: hsl(228, 39%, 23%);
 
   --clr-neutral-900: hsl(232, 12%, 13%);
-  --clr-neutral-100: hsl(0, 0%, 100%);
+  --clr-neutral-100: hsl(0, 0%, 95%);
+  --clr-neutral-200: hsl(0, 0%, 100%);
 
   --ff-primary: 'Be Vietnam Pro', sans-serif;
   --ff-body: var(--ff-primary);
@@ -412,6 +413,74 @@ input:where([type='text'], [type='email']) {
     box-shadow: 5em 0 0 var(--bg);
     background: var(--bg);
   }
+}
+
+/* для слайдера взяв flickity-слайдер з запропонованого на сайті: https://css-tricks.com/creating-responsive-touch-friendly-carousels-with-flickity/
+чи прямо на самому flickity сайті: https://flickity.metafizzy.co/ */
+.main-carousel {
+  margin: var(--size-900);
+  box-sizing: border-box;
+}
+
+.carousel-cell {
+  width: 100%; /* full width */
+  height: auto; /* height of carousel */
+  margin-inline: 20px;
+}
+.carousel-cell img {
+  margin-left: auto;
+  margin-right: auto;
+}
+.carousel-cell h3 {
+  margin: var(--size-500);
+}
+.carousel-cell.is-selected {
+  background: var(--clr-accent-100);
+}
+@media screen and (min-width: 50em) {
+  /* half-width cells for larger devices */
+  .carousel-cell {
+    width: 50%;
+  }
+  .flickity-enabled:focus .flickity-viewport {
+    outline: thin dashed var(--clr-accent-300);
+  }
+}
+/* dots, rounded square next-prev btn */
+.flickity-button {
+  background: var(--clr-accent-400);
+}
+.flickity-button:hover {
+  background: var(--clr-accent-500);
+}
+
+.flickity-prev-next-button {
+  width: 30px;
+  height: 30px;
+  border-radius: 5px;
+}
+/* icon color */
+.flickity-button-icon {
+  fill: white;
+}
+/* position outside */
+.flickity-prev-next-button.previous {
+  left: -10px;
+}
+.flickity-prev-next-button.next {
+  right: -10px;
+}
+/* white circles */
+.flickity-page-dots .dot {
+  width: 12px;
+  height: 12px;
+  opacity: 1;
+  background: transparent;
+  border: 2px solid var(--clr-accent-500);
+}
+/* fill-in selected dot */
+.flickity-page-dots .dot.is-selected {
+  background: var(--clr-accent-400);
 }
 
 /* utility classes */
