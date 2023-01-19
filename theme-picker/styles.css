@@ -1,0 +1,82 @@
+/*Instead of copy and paste the same colors over and over again, we placed them in variables*/
+:root {
+  --border-radius: 3px; /*a variable with global scope*/
+}
+:root,
+[data-selected-theme='green'] {
+  --color-background: #a4f3a2;
+  --color-text: #034435;
+  --color-accent: #00cc66;
+}
+
+[data-selected-theme='blue'] {
+  --color-background: #55dde0; /*sample of variable with local scope*/
+  --color-text: #2b4150;
+  --color-accent: #00d4e7;
+}
+
+[data-selected-theme='pink'] {
+  --color-background: #dfb2f4;
+  --color-text: #463546;
+  --color-accent: #f06efc;
+}
+
+[data-selected-theme='orange'] {
+  --color-background: #fa7d61;
+  --color-text: #1e1e24;
+  --color-accent: #f3601c;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--color-background);
+  background: radial-gradient(var(--color-background), var(--color-accent));
+  background-size: 200%;
+  color: var(--color-text);
+  font-family: sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+::selection {
+  background-color: var(--color-accent);
+}
+
+.container {
+  display: block;
+  background-color: rgba(255, 255, 255, 0.35);
+  padding: 3rem 4rem;
+  border: 2px solid var(--color-text);
+  box-shadow: 7px 6px 0 0 var(--color-text);
+  border-radius: var(--border-radius);
+  max-width: 90vw;
+  transition: transform 0.35s;
+}
+
+h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 400;
+}
+
+p {
+  text-align: center;
+  max-width: 30rem;
+  width: auto;
+  margin-top: 1rem;
+  font-size: clamp(1rem, 5vw, 1.312rem);
+  line-height: 150%;
+}
+
+@media screen and (max-width: 500px) {
+  .container {
+    padding: 1rem;
+  }
+}
