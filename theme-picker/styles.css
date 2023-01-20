@@ -105,7 +105,7 @@ a:is(:hover, :focus) {
   font-size: 1.312rem;
 }
 
-button {
+button[data-theme] {
   margin: 0;
   padding: 0;
   border: none;
@@ -118,28 +118,28 @@ button {
   border: 2px solid var(--color-text);
 }
 
-button + button {
+button[data-theme] + button[data-theme] {
   border-left: none;
 } // selects the second <button> element that are placed immediately after first <button> element
 
-button:first-of-type {
+button[data-theme]:first-of-type {
   border-radius: var(--border-radius) 0 0 var(--border-radius);
 } // selects every <button> element that is the first <button> element of its parent
 
-button:last-of-type {
+button[data-theme]:last-of-type {
   border-radius: 0 var(--border-radius) var(--border-radius) 0;
 } // Selects every <button> element that is the last <button> element of its parent
 
-button[aria-pressed='true'] {
+button[data-theme][aria-pressed='true'] {
   background-color: var(--color-text);
   color: var(--color-background);
 }
 
-button:is(:hover, :focus) {
+button[data-theme]:is(:hover, :focus) {
   box-shadow: 0 0 0 2px var(--color-text) inset;
 }
 
-button[aria-pressed='true']:is(:hover, :focus) {
+button[data-theme][aria-pressed='true']:is(:hover, :focus) {
   box-shadow: 0 0 0 2px var(--color-background) inset;
 }
 
@@ -152,17 +152,17 @@ button[aria-pressed='true']:is(:hover, :focus) {
     display: block;
   }
 
-  button {
+  button[data-theme] {
     display: block;
     margin: 0 auto;
     border-radius: var(--border-radius);
   }
 
-  button:is(:first-of-type, :last-of-type) {
+  button[data-theme]:is(:first-of-type, :last-of-type) {
     border-radius: var(--border-radius);
   }
 
-  button + button {
+  button[data-theme] + button[data-theme] {
     border-left: 2px solid var(--color-text);
     margin-top: 1rem;
   }
