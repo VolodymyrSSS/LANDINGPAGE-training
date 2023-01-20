@@ -34,7 +34,9 @@
 }
 
 body {
-  background-color: var(--color-background);
+  background-color: var(
+    --color-background
+  ); /*use the css value of the local variable*/
   background: radial-gradient(var(--color-background), var(--color-accent));
   background-size: 200%;
   color: var(--color-text);
@@ -46,7 +48,9 @@ body {
 }
 
 ::selection {
-  background-color: var(--color-accent);
+  background-color: var(
+    --color-accent
+  ); /*Selects the portion of an element that is selected by a user*/
 }
 
 .container {
@@ -60,6 +64,20 @@ body {
   transition: transform 0.35s;
 }
 
+/* :has() pseudo-class - a way of selecting a parent element or a previous sibling element 
+with respect to a reference element by taking a relative selector list as an argument. Other
+words - ability to select a parent element based on the child elements it contains and apply 
+styles to the parent.*/
+.container:has(button[data-theme]:active) {
+  transform: rotateZ(0.35deg);
+}
+
+/*Selects container pernt element that contains button[data-theme] element that is the active 
+second button[data-theme] element of its parent*/
+.container:has(button[data-theme]:nth-of-type(2n):active) {
+  transform: rotateZ(-0.35deg);
+}
+
 h1 {
   text-align: center;
   font-size: 2.5rem;
@@ -68,15 +86,74 @@ h1 {
 
 p {
   text-align: center;
-  max-width: 30rem;
-  width: auto;
-  margin-top: 1rem;
+}
+
+a {
+  color: inherit;
+  text-decoration-thickness: 2px;
+}
+
+a:is(:hover, :focus) {
+  text-decoration-thickness: 4px;
+}
+
+.theme-switcher {
+  display: flex;
+  justify-content: center;
+  margin: 1.5rem 0 1rem 0;
+  font-size: 1.312rem;
+}
+
+button {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+
+  padding: 0.75rem 1.25rem;
+  font-size: inherit;
   font-size: clamp(1rem, 5vw, 1.312rem);
-  line-height: 150%;
+  color: var(--color-text);
+  border: 2px solid var(--color-text);
+}
+
+button + button {
+  border-left: none;
+}
+
+button:first-of-type {
+  border-radius: var(--border-radius) 0 0 var(--border-radius);
+}
+
+button:last-of-type {
+  border-radius: 0 var(--border-radius) var(--border-radius) 0;
+}
+
+button:is(:hover, :focus) {
+  box-shadow: 0 0 0 2px var(--color-text) inset;
 }
 
 @media screen and (max-width: 500px) {
   .container {
     padding: 1rem;
+  }
+
+  .theme-switcher {
+    display: block;
+  }
+
+  button {
+    display: block;
+    margin: 0 auto;
+    border-radius: var(--border-radius);
+  }
+
+  button:is(:first-of-type, :last-of-type) {
+    border-radius: var(--border-radius);
+  }
+
+  button + button {
+    border-left: 2px solid var(--color-text);
+    margin-top: 1rem;
   }
 }

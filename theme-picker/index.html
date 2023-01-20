@@ -10,14 +10,17 @@
   <body>
     <div class="container">
       <h1>Pick a theme</h1>
+      <div class="theme-switcher">
+        <button data-theme="green" aria-pressed="true">Green</button>
+        <button data-theme="blue" aria-pressed="false">Blue</button>
+        <button data-theme="pink" aria-pressed="false">Pink</button>
+        <button data-theme="orange" aria-pressed="false">Orange</button>
+      </div>
       <p>
-        Here, we need manually change <br />
-        the attribute <code>data-selected-theme</code> <br />
-        to <strong>green</strong>, <strong>blue</strong>,
-        <strong>pink</strong> or <strong>orange</strong> to see how the
-        different color themes work.
+        This approach lets us switch themes<br />
+        directly from the UI.
       </p>
     </div>
-    <script src="script.js"></script>
+    <script src="scripts.js"></script>
   </body>
 </html>
