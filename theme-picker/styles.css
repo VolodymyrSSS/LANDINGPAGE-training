@@ -50,7 +50,7 @@ body {
 ::selection {
   background-color: var(
     --color-accent
-  ); /*Selects the portion of an element that is selected by a user*/
+  ); /*selects the portion of an element that is selected by a user*/
 }
 
 .container {
@@ -64,16 +64,17 @@ body {
   transition: transform 0.35s;
 }
 
-/* :has() pseudo-class - a way of selecting a parent element or a previous sibling element 
-with respect to a reference element by taking a relative selector list as an argument. Other
-words - ability to select a parent element based on the child elements it contains and apply 
-styles to the parent.*/
+/* :has() pseudo-class - a way of selecting a parent element or
+a previous sibling element with respect to a reference element by
+taking a relative selector list as an argument. 
+Other words - ability to select a parent element based on the child
+elements it contains and apply styles to the parent one.*/
 .container:has(button[data-theme]:active) {
   transform: rotateZ(0.35deg);
 }
 
-/*Selects container pernt element that contains button[data-theme] element that is the active 
-second button[data-theme] element of its parent*/
+/*Selects container pernt element that contains every even button[data-theme]
+element of its parent and is in an ':active' state.*/
 .container:has(button[data-theme]:nth-of-type(2n):active) {
   transform: rotateZ(-0.35deg);
 }
@@ -119,18 +120,27 @@ button {
 
 button + button {
   border-left: none;
-}
+} // selects the second <button> element that are placed immediately after first <button> element
 
 button:first-of-type {
   border-radius: var(--border-radius) 0 0 var(--border-radius);
-}
+} // selects every <button> element that is the first <button> element of its parent
 
 button:last-of-type {
   border-radius: 0 var(--border-radius) var(--border-radius) 0;
+} // Selects every <button> element that is the last <button> element of its parent
+
+button[aria-pressed='true'] {
+  background-color: var(--color-text);
+  color: var(--color-background);
 }
 
 button:is(:hover, :focus) {
   box-shadow: 0 0 0 2px var(--color-text) inset;
+}
+
+button[aria-pressed='true']:is(:hover, :focus) {
+  box-shadow: 0 0 0 2px var(--color-background) inset;
 }
 
 @media screen and (max-width: 500px) {
