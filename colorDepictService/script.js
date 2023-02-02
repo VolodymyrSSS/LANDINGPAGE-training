@@ -1,20 +1,13 @@
 const cols = document.querySelectorAll('.col');
 
-// для генерації безпосередньо самого кольору
-function generateRandomColor() {
-  /* #FF0000 - червонийб №00FF00 - зелений №0000FF - синій RGB в 16й системі числення, тому треба генерувати 0123456789ABCDEF */
-  const hexSymbols = '0123456789ABCDEF';
-  let color = '';
-  for (let i = 0; i < 6; i++) {
-    color += hexSymbols[Math.floor(Math.random() * hexSymbols.length)];
-  }
-  return '#' + color;
-}
+/*Для підключення бібліотеки chroma.js (маленька zero-залежна JS бібліотека для різних видів робіт з кольором) на сайті
+https://gka.github.io/chroma.js/ по ссилці https://cdnjs.com/libraries/chroma-js встановлюємо через CDN в файлі index.html 
+Тобто, замість генерації самого кольору вручну, будемо використовувати цю бібліотеку використавши метод random() */
 
 function setRandomColors() {
   cols.forEach((col) => {
     const hexText = col.querySelector('h2');
-    const color = generateRandomColor();
+    const color = chroma.random();
 
     hexText.textContent = color;
     col.style.background = color;
