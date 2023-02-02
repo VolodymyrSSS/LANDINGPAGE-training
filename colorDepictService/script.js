@@ -22,8 +22,15 @@ document.addEventListener('click', (event) => {
 
     node.classList.toggle('fa-lock-open');
     node.classList.toggle('fa-lock');
+  } else if (type === 'copy') {
+    copyToClickboard(event.target.textContent);
   }
 });
+
+// для копіювання кольору в hex-коді при кліку на текст заголовка h2
+function copyToClickboard(text) {
+  return navigator.clipboard.writeText(text); // може вернути Promis
+}
 
 /*Для підключення бібліотеки chroma.js (маленька zero-залежна JS бібліотека для різних видів робіт з кольором) на сайті
 https://gka.github.io/chroma.js/ по ссилці https://cdnjs.com/libraries/chroma-js встановлюємо через CDN в файлі index.html 
