@@ -1,0 +1,49 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+}
+
+.col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  /* border: 1px solid black; */
+}
+
+/*https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css  -  для іконок на CDN
+https://fontawesome.com/icons/ - щоб знайти конкретну іконку*/
+
+.col h2 {
+  padding: 15px 35px;
+  color: #fff;
+  border-radius: 10px;
+  transition: background 0.3s;
+}
+
+.col h2:hover,
+.col button:hover {
+  background: rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.col button {
+  font-size: 1.5rem;
+  border: none;
+  padding: 15px 35px;
+  color: #fff;
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+/* https://gka.github.io/chroma.js/ - маленька бібліот
+ а це взяти з CDN і вставити в html по ссилці https://cdnjs.com/libraries/chroma-js*/
