@@ -38,9 +38,10 @@ https://fontawesome.com/icons/ - щоб знайти конкретну ікон
 .col button {
   font-size: 1.5rem;
   border: none;
-  padding: 15px 35px;
+  padding: 10px;
   color: #fff;
   background: transparent;
+  outline: none;
   cursor: pointer;
   transition: background 0.3s;
 }
