@@ -78,18 +78,17 @@ function deleteTask(event) {
   // define id of the task to be removed and convert it to a Number
   const id = Number(parentNode.id);
 
-  // find an index of the element in the array
-  // const index = tasks.findIndex(function (task) {
-  //   if (task.id === id) {
-  //     return true; // return the index
-  //   }
-  //   // return task.id === id; // one-line solution
+  // remove element from the array using filter() method
+  // tasks = tasks.filter(function (task) {
+  //   // if (task.id === id) {
+  //   //   return false;
+  //   // } else {
+  //   //   return true;
+  //   // }
+  //   return task.id !== id; // in one-line solution
   // });
-  // find index using arrow function
-  const index = tasks.findIndex((task) => task.id === id);
-
-  // remove an element from the array with defined index
-  tasks.splice(index, 1);
+  // remove element using array filter() method and arrow function
+  tasks = tasks.filter((task) => task.id !== id);
 
   // remove element from the markup
   parentNode.remove();
