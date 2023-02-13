@@ -74,7 +74,25 @@ function deleteTask(event) {
   if (event.target.dataset.action !== 'delete') return;
 
   const parentNode = event.target.closest('.list-group-item'); // find the parent node
-  parentNode.remove(); // apply DOM remove method to node
+
+  // define id of the task to be removed and convert it to a Number
+  const id = Number(parentNode.id);
+
+  // find an index of the element in the array
+  // const index = tasks.findIndex(function (task) {
+  //   if (task.id === id) {
+  //     return true; // return the index
+  //   }
+  //   // return task.id === id; // one-line solution
+  // });
+  // find index using arrow function
+  const index = tasks.findIndex((task) => task.id === id);
+
+  // remove an element from the array with defined index
+  tasks.splice(index, 1);
+
+  // remove element from the markup
+  parentNode.remove();
 
   // add an empty list block to display when no tasks available
   if (tasksList.children.length === 1) {
