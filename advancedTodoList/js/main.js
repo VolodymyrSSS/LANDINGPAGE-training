@@ -1,31 +1,31 @@
-// in order to add a new task, we need:
-// 1) find a form element where input is placed
+// 1) to add a new task: find a form element where input is placed
 const form = document.querySelector('#form');
 
 // 2) than, pick up an input element
 const taskInput = document.querySelector('#taskInput');
 
-// 6.1) define a plase where new generated markup should inserted
+// 4) define a plase where new generated markup should inserted
 const tasksList = document.querySelector('#tasksList');
 
-// 9.1) get the empty list block (with image and text)
+// 5) get the empty list block (with image and text)
 const emptyList = document.querySelector('#emptyList');
 
 // 3) hang on an eventListener to form
 form.addEventListener('submit', addTask);
 
-// in order to delete the task:
-// 10) listen to the task list, cause any new task is generated there
+// 6) to delete the task: listen to the task list, cause any new task is generated there
 tasksList.addEventListener('click', deleteTask);
+
+// 7) in order to mark the task is compleated:
+tasksList.addEventListener('click', doneTask);
 
 // create addTask function
 function addTask(event) {
   event.preventDefault(); // not to reload the page
 
-  // 4) get a value from input
-  const taskText = taskInput.value;
+  const taskText = taskInput.value; // get a value from input
 
-  // 5) create a markup for a new task in order to show it on a html-page
+  // create a markup for a new task in order to show it on a html-page
   const taskHTML = `
     <li class="list-group-item d-flex justify-content-between task-item">
       <span class="task-title">${taskText}</span>
@@ -40,19 +40,15 @@ function addTask(event) {
     </li>
   `;
 
-  // 6) add generated markup on a page
-  tasksList.insertAdjacentHTML('beforeend', taskHTML);
+  tasksList.insertAdjacentHTML('beforeend', taskHTML); // add generated markup on a page
 
-  // 7) clear the input field
-  taskInput.value = '';
+  taskInput.value = ''; // clear the input field
 
-  // 8) return a focus to input field
-  taskInput.focus();
+  taskInput.focus(); // return a focus to input field
 
-  // 9) remove an empty list block to display when there is a task
+  // remove an empty list block to display when there is a task
   if (tasksList.children.length > 1) {
-    // apply DOM add method
-    emptyList.classList.add('none');
+    emptyList.classList.add('none'); // apply DOM add method to the classList
   }
 }
 
@@ -60,14 +56,21 @@ function addTask(event) {
 function deleteTask(event) {
   // check if clicked button has an attribute 'delete'
   if (event.target.dataset.action === 'delete') {
-    // 11) to find the closest parent in task list  - cause event-listener hang on there
-    const parentNode = event.target.closest('.list-group-item');
-    // 12) apply DOM remove method
-    parentNode.remove();
+    const parentNode = event.target.closest('.list-group-item'); // find the parent node
+    parentNode.remove(); // apply DOM remove method
   }
-
-  // 13) add an empty list block to display when no tasks available
+  // add an empty list block to display when no tasks available
   if (tasksList.children.length === 1) {
-    emptyList.classList.remove('none');
+    emptyList.classList.remove('none'); // apply DOM remove method to the classList
+  }
+}
+
+// create doneTask function
+function doneTask(event) {
+  // check if clicked button has an attribute 'done'
+  if (event.target.dataset.action === 'done') {
+    const parentNode = event.target.closest('.list-group-item'); // find the parent node
+    const taskTitle = parentNode.querySelector('.task-title'); // find the span-elemrnt
+    taskTitle.classList.toggle('task-title--done'); // apply DOM toggle method to the classList
   }
 }
