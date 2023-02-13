@@ -19,6 +19,12 @@ tasksList.addEventListener('click', deleteTask);
 // 7) in order to mark the task is compleated:
 tasksList.addEventListener('click', doneTask);
 
+// 8) check if in localStorege has any task
+if (localStorage.getItem('tasksHTML')) {
+  // if has task - get it from local storage by key
+  tasksList.innerHTML = localStorage.getItem('tasksHTML');
+}
+
 // create addTask function
 function addTask(event) {
   event.preventDefault(); // not to reload the page
@@ -50,6 +56,8 @@ function addTask(event) {
   if (tasksList.children.length > 1) {
     emptyList.classList.add('none'); // apply DOM add method to the classList
   }
+
+  saveHTMLtoLS(); // call func to save in localStorage
 }
 
 // create deleteTask function
@@ -64,6 +72,8 @@ function deleteTask(event) {
   if (tasksList.children.length === 1) {
     emptyList.classList.remove('none'); // apply DOM remove method to the classList
   }
+
+  saveHTMLtoLS(); // call func to save changes in localStorage
 }
 
 // create doneTask function
@@ -74,4 +84,11 @@ function doneTask(event) {
   const parentNode = event.target.closest('.list-group-item'); // find the parent node
   const taskTitle = parentNode.querySelector('.task-title'); // find the span-elemrnt
   taskTitle.classList.toggle('task-title--done'); // apply DOM toggle method to the classList
+
+  saveHTMLtoLS(); // call func to save changes in localStorage
+}
+
+// save HTML to local storage - it is NOT CORRECT
+function saveHTMLtoLS() {
+  localStorage.setItem('tasksHTML', tasksList.innerHTML);
 }
