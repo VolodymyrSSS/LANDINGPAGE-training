@@ -74,7 +74,7 @@ body {
 }
 
 .btn-action img {
-  pointer-events: none;
+  pointer-events: none; /*when clicked need to pass through img to button*/
 }
 
 .none {

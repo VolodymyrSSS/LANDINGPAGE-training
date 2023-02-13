@@ -1,5 +1,4 @@
 // in order to add a new task, we need:
-
 // 1) find a form element where input is placed
 const form = document.querySelector('#form');
 
@@ -12,8 +11,15 @@ const tasksList = document.querySelector('#tasksList');
 // 9.1) get the empty list block (with image and text)
 const emptyList = document.querySelector('#emptyList');
 
-// 3) hang on an eventListener to form to add a task
-form.addEventListener('submit', function (event) {
+// 3) hang on an eventListener to form
+form.addEventListener('submit', addTask);
+
+// in order to delete the task:
+// 10) listen to the task list, cause any new task is generated there
+tasksList.addEventListener('click', deleteTask);
+
+// create addTask function
+function addTask(event) {
   event.preventDefault(); // not to reload the page
 
   // 4) get a value from input
@@ -43,8 +49,25 @@ form.addEventListener('submit', function (event) {
   // 8) return a focus to input field
   taskInput.focus();
 
-  // 9) remove an empty list block from the task list
+  // 9) remove an empty list block to display when there is a task
   if (tasksList.children.length > 1) {
+    // apply DOM add method
     emptyList.classList.add('none');
   }
-});
+}
+
+// create deleteTask function
+function deleteTask(event) {
+  // check if clicked button has an attribute 'delete'
+  if (event.target.dataset.action === 'delete') {
+    // 11) to find the closest parent in task list  - cause event-listener hang on there
+    const parentNode = event.target.closest('.list-group-item');
+    // 12) apply DOM remove method
+    parentNode.remove();
+  }
+
+  // 13) add an empty list block to display when no tasks available
+  if (tasksList.children.length === 1) {
+    emptyList.classList.remove('none');
+  }
+}
