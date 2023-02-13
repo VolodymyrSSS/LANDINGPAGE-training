@@ -54,11 +54,12 @@ function addTask(event) {
 
 // create deleteTask function
 function deleteTask(event) {
-  // check if clicked button has an attribute 'delete'
-  if (event.target.dataset.action === 'delete') {
-    const parentNode = event.target.closest('.list-group-item'); // find the parent node
-    parentNode.remove(); // apply DOM remove method
-  }
+  // check if clicked button has NOT an attribute 'delete'
+  if (event.target.dataset.action !== 'delete') return;
+
+  const parentNode = event.target.closest('.list-group-item'); // find the parent node
+  parentNode.remove(); // apply DOM remove method to node
+
   // add an empty list block to display when no tasks available
   if (tasksList.children.length === 1) {
     emptyList.classList.remove('none'); // apply DOM remove method to the classList
@@ -67,10 +68,10 @@ function deleteTask(event) {
 
 // create doneTask function
 function doneTask(event) {
-  // check if clicked button has an attribute 'done'
-  if (event.target.dataset.action === 'done') {
-    const parentNode = event.target.closest('.list-group-item'); // find the parent node
-    const taskTitle = parentNode.querySelector('.task-title'); // find the span-elemrnt
-    taskTitle.classList.toggle('task-title--done'); // apply DOM toggle method to the classList
-  }
+  // check if clicked button has NOT an attribute 'done'
+  if (event.target.dataset.action !== 'done') return;
+
+  const parentNode = event.target.closest('.list-group-item'); // find the parent node
+  const taskTitle = parentNode.querySelector('.task-title'); // find the span-elemrnt
+  taskTitle.classList.toggle('task-title--done'); // apply DOM toggle method to the classList
 }
