@@ -13,6 +13,33 @@ const emptyList = document.querySelector('#emptyList');
 // create array to add tasks
 let tasks = [];
 
+// check if we have something in local storage
+if (localStorage.getItem('tasks')) {
+  tasks = JSON.parse(localStorage.getItem('tasks')); // get the tasks as array
+}
+
+tasks.forEach(function (task) {
+  // create css class to get the status of the class
+  const cssClass = task.done ? 'task-title task-title--done' : 'task-title';
+
+  // create a markup for a new task in order to show it on a html-page
+  const taskHTML = `
+    <li id="${task.id}" class="list-group-item d-flex justify-content-between task-item">
+      <span class="${cssClass}">${task.text}</span>
+      <div class="task-item__buttons">
+        <button type="button" data-action="done" class="btn-action">
+          <img src="./img/tick.svg" alt="Done" width="18" height="18" />
+        </button>
+        <button type="button" data-action="delete" class="btn-action">
+          <img src="./img/cross.svg" alt="Done" width="18" height="18" />
+        </button>
+      </div>
+    </li>
+  `;
+
+  tasksList.insertAdjacentHTML('beforeend', taskHTML); // insert generated markup on a page
+});
+
 // to show empty list element when start app
 checkEmptyList();
 
@@ -40,6 +67,9 @@ function addTask(event) {
   // add new task to the list
   // tasks.push(newTask); // classic way using array method push()
   tasks = [...tasks, newTask]; // better way - leave the array immutable
+
+  // save array of tasks (with added one) into the local storage
+  saveToLocalStorage();
 
   // create css class to get the status of the class
   const cssClass = newTask.done ? 'task-title task-title--done' : 'task-title';
@@ -84,6 +114,9 @@ function deleteTask(event) {
   // remove element from the markup
   parentNode.remove();
 
+  // save the changed array of the tasks (without one being deleted) into the local storage
+  saveToLocalStorage();
+
   checkEmptyList(); // show empty list element when there is NOT single task in the list
 }
 
@@ -102,6 +135,9 @@ function doneTask(event) {
 
   // mark the task as done
   task.done = !task.done; // get reversed value of the task status
+
+  // save the changed status of the task in array into the local storage
+  saveToLocalStorage();
 
   const taskTitle = parentNode.querySelector('.task-title'); // find the span-elemrnt
   taskTitle.classList.toggle('task-title--done'); // apply DOM toggle method to the classList
@@ -127,4 +163,9 @@ function checkEmptyList() {
     // remove empty list block
     emptyListEl ? emptyListEl.remove() : null;
   }
+}
+
+function saveToLocalStorage() {
+  // save the array of tasks into the brauser's local storage
+  localStorage.setItem('tasks', JSON.stringify(tasks));
 }
