@@ -1,25 +1,25 @@
-// 1) to add a new task: find a form element where input is placed
+// find a form element where input is placed
 const form = document.querySelector('#form');
 
-// 2) than, pick up an input element
+// pick up an input element
 const taskInput = document.querySelector('#taskInput');
 
-// 4) define a plase where new generated markup should inserted
+// define a plase where new generated markup should inserted
 const tasksList = document.querySelector('#tasksList');
 
-// 5) get the empty list block (with image and text)
+// get the empty list block (with image and text)
 const emptyList = document.querySelector('#emptyList');
 
 // create array to add tasks
 let tasks = [];
 
-// 3) hang on an eventListener to form
+// hang on an eventListener to form
 form.addEventListener('submit', addTask);
 
-// 6) to delete the task: listen to the task list, cause any new task is generated there
+// to delete the task: listen to the task list, cause any new task is generated there
 tasksList.addEventListener('click', deleteTask);
 
-// 7) in order to mark the task is compleated:
+// to mark the task- hang on an eventListener to tasks list
 tasksList.addEventListener('click', doneTask);
 
 // create addTask function
@@ -79,15 +79,6 @@ function deleteTask(event) {
   const id = Number(parentNode.id);
 
   // remove element from the array using filter() method
-  // tasks = tasks.filter(function (task) {
-  //   // if (task.id === id) {
-  //   //   return false;
-  //   // } else {
-  //   //   return true;
-  //   // }
-  //   return task.id !== id; // in one-line solution
-  // });
-  // remove element using array filter() method and arrow function
   tasks = tasks.filter((task) => task.id !== id);
 
   // remove element from the markup
@@ -105,6 +96,20 @@ function doneTask(event) {
   if (event.target.dataset.action !== 'done') return;
 
   const parentNode = event.target.closest('.list-group-item'); // find the parent node
+
+  // define id of the task to be marked and convert it to a Number
+  const id = Number(parentNode.id);
+
+  // find an element to be marked from an array
+  // const task = tasks.find((task) => {
+  //   if (task.id === id) return true;
+  // });
+  // mark the task as done using find() method and arrow function
+  const task = tasks.find((task) => task.id === id);
+
+  // mark the task as done
+  task.id = !task.id; // get reversed value of the task status
+
   const taskTitle = parentNode.querySelector('.task-title'); // find the span-elemrnt
   taskTitle.classList.toggle('task-title--done'); // apply DOM toggle method to the classList
 }
