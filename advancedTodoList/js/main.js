@@ -16,29 +16,14 @@ let tasks = [];
 // check if we have something in local storage
 if (localStorage.getItem('tasks')) {
   tasks = JSON.parse(localStorage.getItem('tasks')); // get the tasks as array
+  tasks.forEach((task) => renderTask(task)); // than render each task on a page
 }
 
-tasks.forEach(function (task) {
-  // create css class to get the status of the class
-  const cssClass = task.done ? 'task-title task-title--done' : 'task-title';
-
-  // create a markup for a new task in order to show it on a html-page
-  const taskHTML = `
-    <li id="${task.id}" class="list-group-item d-flex justify-content-between task-item">
-      <span class="${cssClass}">${task.text}</span>
-      <div class="task-item__buttons">
-        <button type="button" data-action="done" class="btn-action">
-          <img src="./img/tick.svg" alt="Done" width="18" height="18" />
-        </button>
-        <button type="button" data-action="delete" class="btn-action">
-          <img src="./img/cross.svg" alt="Done" width="18" height="18" />
-        </button>
-      </div>
-    </li>
-  `;
-
-  tasksList.insertAdjacentHTML('beforeend', taskHTML); // insert generated markup on a page
-});
+// render available tasks on a page
+// tasks.forEach(function (task) {
+//   renderTask(task);
+// });
+// tasks.forEach((task) => renderTask(task));
 
 // to show empty list element when start app
 checkEmptyList();
@@ -71,25 +56,7 @@ function addTask(event) {
   // save array of tasks (with added one) into the local storage
   saveToLocalStorage();
 
-  // create css class to get the status of the class
-  const cssClass = newTask.done ? 'task-title task-title--done' : 'task-title';
-
-  // create a markup for a new task in order to show it on a html-page
-  const taskHTML = `
-    <li id="${newTask.id}" class="list-group-item d-flex justify-content-between task-item">
-      <span class="${cssClass}">${newTask.text}</span>
-      <div class="task-item__buttons">
-        <button type="button" data-action="done" class="btn-action">
-          <img src="./img/tick.svg" alt="Done" width="18" height="18" />
-        </button>
-        <button type="button" data-action="delete" class="btn-action">
-          <img src="./img/cross.svg" alt="Done" width="18" height="18" />
-        </button>
-      </div>
-    </li>
-  `;
-
-  tasksList.insertAdjacentHTML('beforeend', taskHTML); // insert generated markup on a page
+  renderTask(newTask); // render new task
 
   taskInput.value = ''; // clear the input field
 
@@ -165,7 +132,31 @@ function checkEmptyList() {
   }
 }
 
+// create saveToLocalStorage function
 function saveToLocalStorage() {
   // save the array of tasks into the brauser's local storage
   localStorage.setItem('tasks', JSON.stringify(tasks));
+}
+
+// create renderTask function
+function renderTask(task) {
+  // create css class to get the status of the class
+  const cssClass = task.done ? 'task-title task-title--done' : 'task-title';
+
+  // create a markup for a new task in order to show it on a html-page
+  const taskHTML = `
+    <li id="${task.id}" class="list-group-item d-flex justify-content-between task-item">
+      <span class="${cssClass}">${task.text}</span>
+      <div class="task-item__buttons">
+        <button type="button" data-action="done" class="btn-action">
+          <img src="./img/tick.svg" alt="Done" width="18" height="18" />
+        </button>
+        <button type="button" data-action="delete" class="btn-action">
+          <img src="./img/cross.svg" alt="Done" width="18" height="18" />
+        </button>
+      </div>
+    </li>
+  `;
+
+  tasksList.insertAdjacentHTML('beforeend', taskHTML); // insert generated markup on a page
 }
