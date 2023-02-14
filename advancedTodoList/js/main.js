@@ -13,6 +13,9 @@ const emptyList = document.querySelector('#emptyList');
 // create array to add tasks
 let tasks = [];
 
+// to show empty list element when start app
+checkEmptyList();
+
 // hang on an eventListener to form
 form.addEventListener('submit', addTask);
 
@@ -56,16 +59,13 @@ function addTask(event) {
     </li>
   `;
 
-  tasksList.insertAdjacentHTML('beforeend', taskHTML); // add generated markup on a page
+  tasksList.insertAdjacentHTML('beforeend', taskHTML); // insert generated markup on a page
 
   taskInput.value = ''; // clear the input field
 
   taskInput.focus(); // return a focus to input field
 
-  // remove an empty list block to display when there is a task
-  if (tasksList.children.length > 1) {
-    emptyList.classList.add('none'); // apply DOM add method to the classList
-  }
+  checkEmptyList(); // do NOT show empty list element when there is a task
 }
 
 // create deleteTask function
@@ -84,10 +84,7 @@ function deleteTask(event) {
   // remove element from the markup
   parentNode.remove();
 
-  // add an empty list block to display when no tasks available
-  if (tasksList.children.length === 1) {
-    emptyList.classList.remove('none'); // apply DOM remove method to the classList
-  }
+  checkEmptyList(); // show empty list element when there is NOT single task in the list
 }
 
 // create doneTask function
@@ -100,16 +97,34 @@ function doneTask(event) {
   // define id of the task to be marked and convert it to a Number
   const id = Number(parentNode.id);
 
-  // find an element to be marked from an array
-  // const task = tasks.find((task) => {
-  //   if (task.id === id) return true;
-  // });
-  // mark the task as done using find() method and arrow function
+  // find the task to be done using find() method and arrow function
   const task = tasks.find((task) => task.id === id);
 
   // mark the task as done
-  task.id = !task.id; // get reversed value of the task status
+  task.done = !task.done; // get reversed value of the task status
 
   const taskTitle = parentNode.querySelector('.task-title'); // find the span-elemrnt
   taskTitle.classList.toggle('task-title--done'); // apply DOM toggle method to the classList
+}
+
+// create checkEmptyList function
+function checkEmptyList() {
+  // if tasks list is empty
+  if (tasks.length === 0) {
+    const emptyListHTML = `
+      <li id="emptyList" class="list-group-item empty-list">
+        <img src="./img/leaf.svg" alt="Empty" width="48" class="mt-3" />
+        <div class="empty-list__title">The task list is empty</div>
+      </li>
+    `;
+    tasksList.insertAdjacentHTML('afterbegin', emptyListHTML); // insert generated markup on a page
+  }
+
+  // if single task is available
+  if (tasks.length > 0) {
+    // find the emptyList DOM element
+    const emptyListEl = document.querySelector('#emptyList');
+    // remove empty list block
+    emptyListEl ? emptyListEl.remove() : null;
+  }
 }
