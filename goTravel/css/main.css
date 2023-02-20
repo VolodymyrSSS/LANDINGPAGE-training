@@ -97,12 +97,22 @@ body {
 
 .header__img img {
   position: absolute;
-  top: 120px;
-  right: 60px;
+  top: -15px;
+  right: 68px;
   max-width: unset;
   width: 894px;
   height: 940px;
-  pointer-events: none; /*щоб не можна було обрати картинку і всі кліки через неї*/
+  pointer-events: none; щоб не можна було обрати картинку і всі кліки через неї
+}
+
+.header__img::after {
+  content: "";
+  position: absolute;
+  top: 137px;
+  right: 130px;
+  width: 830px;
+  height: 622px;
+  background-image: url("./../img/header/header-elements.svg");
 }
 
 /* navigation */
