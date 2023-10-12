@@ -379,3 +379,95 @@ footer > p {
 	text-align: center;
 }
 /* ------ */
+
+/* MEDIA QUERIES */
+
+@media (max-width: 1100px) {
+	.beer {
+		width: 200px;
+	}
+
+	#content {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media (max-width: 800px) {
+	#intro {
+		padding: 30px;
+	}
+
+	.beer {
+		width: 150px;
+	}
+
+	.info {
+		gap: 20px;
+		padding: 30px 30px;
+	}
+
+	.info h1 {
+		font-size: 2.5rem;
+	}
+
+	.info p {
+		font-size: 1rem;
+	}
+
+	#content {
+		gap: 30px;
+		padding: 60px 20px;
+	}
+
+	.card {
+		width: 250px;
+	}
+
+	.modal-content {
+		width: 80%;
+	}
+
+	footer {
+		padding: 20px 80px 60px;
+	}
+
+	footer > p {
+		font-size: 1.1rem;
+	}
+}
+
+@media (max-width: 550px) {
+	#intro {
+		grid-template-columns: repeat(1, 1fr);
+		grid-template-areas:
+			'split-beer'
+			'info';
+	}
+
+	.info {
+		grid-area: info;
+	}
+
+	.split-beer {
+		grid-area: split-beer;
+		margin: 20px auto;
+	}
+
+	.beer {
+		width: 100px;
+	}
+
+	#content {
+		grid-template-columns: repeat(1, 1fr);
+		padding: 40px 40px;
+	}
+
+	footer {
+		padding: 20px 30px 60px;
+	}
+
+	footer > p {
+		font-size: 1rem;
+	}
+}
+/* ------ */
