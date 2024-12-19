@@ -1,0 +1,15 @@
+.avatar {
+    text-align: center;
+}
+
+.avatar-img {
+    width: 57px;
+    height: 57px;
+    margin-bottom: 13px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.avatar-name {
+    font-size: 12px;
+}

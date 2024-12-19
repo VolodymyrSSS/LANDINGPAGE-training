@@ -1,0 +1,45 @@
+.footer {
+    position: relative;
+    background-color: #245852;
+    color: #fff;
+    padding: 104px 0 144px;
+}
+
+.footer-logo + * {
+    margin-top: 74px;
+}
+
+.footer-nav {
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.footer-nav li + li {
+    margin-top: 60px;
+}
+
+.footer-nav a {
+    transition: opacity 0.2s ease;
+}
+
+.footer-nav a:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+}
+
+.footer-copy {
+    text-align: center;
+    margin-top: 45px;
+}
+
+.footer-image {
+    position: absolute;
+    top: 174px;
+    right: 313px;
+
+    width: 245px;
+    height: 392px;
+    margin-bottom: 33px;
+    object-fit: cover;
+    border-radius: 18px;
+}

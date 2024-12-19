@@ -1,0 +1,31 @@
+.card {
+    width: 296px;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0px 3.62249px 18.1125px rgba(165, 165,165, 0.25);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 28px 20px 30px;
+}
+
+.card-title {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 1;
+
+    position: relative;
+    padding-bottom: 12px;
+    margin-bottom: 13px;
+}
+
+.card-title::after {
+    content: '';
+    position: absolute;
+    background-color: #000;
+    height: 0.75px;
+    left: -7px;
+    right: -7px;
+    bottom: 0;
+}
