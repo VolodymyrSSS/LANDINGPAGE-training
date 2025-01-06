@@ -29,3 +29,9 @@
     right: -7px;
     bottom: 0;
 }
+
+@media (max-width: 500px) {
+    .card {
+        max-width: 296px;
+    }
+}

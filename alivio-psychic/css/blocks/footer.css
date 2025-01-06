@@ -5,8 +5,31 @@
     padding: 104px 0 144px;
 }
 
-.footer-logo + * {
-    margin-top: 74px;
+.svg-container-footer {
+    display: inline-block;
+    padding: 5px; /* equivalent to desired ‘padding' around SVG */
+    background-color: transparent; /* initial background */
+    transition: background-color 0.3s; /* Smooth background color transition */
+}
+
+.footer-logo {
+    fill: #ffffff; /* initial fill color of SVG paths, set to white */
+    stroke: #ffffff; /* Initial stroke color */
+    stroke-width: 0.2; /* to make the paths look bolder or thinner */
+    transition: fill 0.3s ease, stroke-width 0.3s ease; /* smooth transition for fill and stroke-width property */
+}
+
+.svg-container-footer:hover {
+    background-color: #ffffff;
+}
+
+.svg-container-footer:hover .footer-logo .alivio-letter {
+    fill: #245852;
+    stroke-width: 0.7; /* makes the stroke-width bolder on hover */
+}
+
+.svg-container-footer + * {
+    margin-top: 55px;
 }
 
 .footer-nav {
@@ -19,13 +42,30 @@
 }
 
 .footer-nav a {
+    background: linear-gradient(to bottom, #fff 0%, #fff 100%);
+    background-position: 0 100%;
+    background-repeat: repeat-x;
+    background-size: 3px 3px;
+    color: #fff;
+    text-decoration: none;
+  }
+  
+.footer-nav a:hover {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg id='squiggle-link' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:ev='http://www.w3.org/2001/xml-events' viewBox='0 0 20 4'%3E%3Cstyle type='text/css'%3E.squiggle{animation:shift .3s linear infinite;}@keyframes shift {from {transform:translateX(0);}to {transform:translateX(-20px);}}%3C/style%3E%3Cpath fill='none' stroke='%23ffffff' stroke-width='2' class='squiggle' d='M0,3.5 c 5,0,5,-3,10,-3 s 5,3,10,3 c 5,0,5,-3,10,-3 s 5,3,10,3'/%3E%3C/svg%3E");
+    background-position: 0 100%;
+    background-size: auto 6px;
+    background-repeat: repeat-x;
+    text-decoration: none;
+}
+
+/* .footer-nav a {
     transition: opacity 0.2s ease;
 }
 
 .footer-nav a:hover {
     opacity: 0.8;
     text-decoration: underline;
-}
+} */
 
 .footer-copy {
     text-align: center;
@@ -35,11 +75,69 @@
 .footer-image {
     position: absolute;
     top: 174px;
-    right: 313px;
+    right: 50px;
 
     width: 245px;
     height: 392px;
     margin-bottom: 33px;
     object-fit: cover;
     border-radius: 18px;
+}
+
+@media (max-width: 1399px) {
+    .footer {
+        padding: 80px 0 100px;
+    }
+    .footer-logo + * {
+        margin-top: 65px;
+    }
+    .footer-nav li + li {
+        margin-top: 55px;
+    }
+    .footer-image {
+        top: 112px;
+        right: 332px;
+    }
+    .footer-copy {
+        margin-left: 62px;
+    }
+}
+
+@media (max-width: 991px) {
+    .footer-nav li + li {
+        margin-top: 49px;
+    }
+    .footer-image {
+        top: 212px;
+        right: 122px;
+        width: 182px;
+        height: 278px;
+    }
+    .footer-copy {
+        margin-left: 0px;
+    }
+}
+
+@media (max-width: 500px) {
+    .footer-nav {
+        font-size: 18px;
+    }
+    .footer-image {
+        top: 264px;
+        right: 45px;
+        width: 113px;
+        height: 170px;
+    }
+    .footer-copy {
+        margin-left: -89px;
+    }
+}
+
+@media (max-width: 320px) {
+    .footer-image {
+        top: 390px;
+        right: 38px;
+        width: 55px;
+        height: 80px;
+    }
 }
