@@ -1,5 +1,10 @@
-/*In order to display information on the front end of a site, we'll be working with the DOM, which is actually an API itself that allows JavaScript to communicate with HTML.
-As well, we have to concider the requests dispatch to other sourse – sends to other domen (or even subdomen), or protocol, or port – requires the special headers from remote site. This policy is called CORS: Cross-Origin Resource Sharing (сумісне використання ресурсів між різними джерелами).*/
+/*In order to display information on the front end of a site, we'll be working 
+with the DOM, which is actually an API itself that allows JavaScript to communicate 
+with HTML.
+As well, we have to concider the requests dispatch to other sourse – sends to other 
+domen (or even subdomen), or protocol, or port – requires the special headers from 
+remote site. This policy is called CORS: Cross-Origin Resource Sharing (сумісне 
+використання ресурсів між різними джерелами).*/
 
 const app = document.getElementById('root'); // access a root 'div' as 'app' variable
 
