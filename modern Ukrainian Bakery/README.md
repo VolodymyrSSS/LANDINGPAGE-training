@@ -9,3 +9,5 @@ The validity of html-file can be cheked on site https://validator.w3.org/
 For SVG-sprite the sprite generetor was used on site https://icomoon.io/
 
 To optimize svg-icons the site can be used https://svgomg.net/
+
+To compile scss I use VS Code extention "Live Sass Compiler"

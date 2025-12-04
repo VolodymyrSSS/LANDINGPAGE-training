@@ -1,0 +1,51 @@
+.traditions {
+  padding-top: 96px;
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+  }
+
+  &__content {
+    min-width: 710px;
+  }
+
+  &__title {
+    margin-bottom: 42px;
+  }
+
+  // the :first-of-type approach
+  // Use this one if the layout is fixed and we want to avoid extra classes
+  // &__text:first-of-type span {
+  //   text-transform: uppercase;
+  //   font-weight: 600;
+  // }
+
+  // &__text {
+  //   &--limited {
+  //     max-width: 340px;
+  //   }
+  // }
+
+  // Use modifiers if you expect growth, reuse, or want more semantic clarity.
+  &__text {
+    // base styles
+    margin-bottom: 16px;
+
+    span {
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    &--limited {
+      max-width: 340px;
+
+      span {
+        text-transform: none;
+        font-size: 18px;
+        font-weight: 400;
+      }
+    }
+  }
+}
