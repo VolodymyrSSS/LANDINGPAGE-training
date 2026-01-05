@@ -1,8 +1,11 @@
 .format-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  height: 444px;
+  width: 100%; // card fills its slide, not beyond
+  max-width: 100%; // prevent overflow
+  height: 444px; // fixed vertical size
   padding: 24px;
   background-image: linear-gradient(
     180deg,
@@ -12,12 +15,12 @@
   );
   border: 1px solid lightgrey;
   border-radius: 16px;
-  transition: transform 0.3s;
-  position: relative;
+  overflow: hidden;
+  // transition: transform 0.3s;
 
-  &:hover {
-    transform: scale(1.05);
-  }
+  // &:hover {
+  //   transform: scale(1.05);
+  // }
 
   &__image {
     position: absolute;
@@ -26,6 +29,7 @@
     width: 100%;
     height: 100%;
     border-radius: 16px;
+    object-fit: cover;
     z-index: -1;
   }
 

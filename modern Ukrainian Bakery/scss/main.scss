@@ -1,6 +1,10 @@
+// 1. Settings / Config
+
 @import './utils/fonts';
 
 @import './utils/variables';
+
+// 2. Base / Global
 
 @import './base';
 
@@ -8,23 +12,31 @@
 
 @import './utils/accented';
 
+// 3. Components (reusable building blocks)
+
 @import './components/buttons';
 
 @import './components/links';
+
+@import './components/input';
+
+@import './components/form-terms';
 
 @import './components/chef-card';
 
 @import './components/carousel-btn';
 
-@import './components/form-terms';
+@import './components/pagination';
 
-@import './components/input';
+// 4. Layout (page sections)
 
 @import './layout/section';
 
 @import './layout/container';
 
 @import './layout/header';
+
+@import './layout/mobile-menu';
 
 @import './layout/hero';
 

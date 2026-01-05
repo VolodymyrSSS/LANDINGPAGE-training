@@ -1,3 +1,4 @@
+// css variables
 :root {
   --color-primary-dark: #31261a;
   --color-primary-light: #faf4ea;
@@ -6,3 +7,8 @@
   --color-brand-normal: #819b57;
   --color-brand-light: #cfcfbc;
 }
+
+// scss variables
+$bp-mobile: 480px;
+$bp-tablet: 768px;
+$bp-desktop: 1280px;

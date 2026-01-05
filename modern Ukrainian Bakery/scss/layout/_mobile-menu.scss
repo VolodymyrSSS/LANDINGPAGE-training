@@ -1,0 +1,59 @@
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 25px 25px 200px;
+  background-color: var(--color-primary-light);
+  transform: translateX(100%);
+  transition: transform 0.3s;
+  z-index: 9999;
+
+  &::after {
+    position: absolute;
+    content: '';
+    width: 180px;
+    height: 240px;
+    bottom: 38px;
+    right: 8px;
+    background-image: url('../images/decor-one-loaf-burger.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &.is-open {
+    transform: translateX(0);
+  }
+
+  &__logo {
+    min-height: 38px;
+  }
+
+  &__btn-close {
+    position: absolute;
+    top: 16px;
+    right: 24px;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 32px;
+
+    & a {
+      color: var(--color-primary-dark);
+      font-size: 14px;
+      font-weight: 300;
+      text-decoration: none;
+      line-height: 1.1;
+      margin-bottom: 0;
+    }
+  }
+}

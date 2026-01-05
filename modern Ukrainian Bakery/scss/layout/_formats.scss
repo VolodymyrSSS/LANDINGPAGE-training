@@ -1,21 +1,31 @@
 .formats {
   &__title {
+    margin-bottom: 24px;
+  }
+
+  @media screen and (min-width: $bp-tablet) {
     margin-bottom: 80px;
   }
 
-  &-container {
+  &__slider {
     display: flex;
     align-items: center;
-    gap: 32px;
+    gap: 32px; // space between arrows and slider
 
-    &__list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
+    &-btn {
+      display: none;
+
+      @media screen and (min-width: $bp-tablet) {
+        display: flex;
+      }
     }
 
-    &__item {
-      flex-basis: calc((100% - 40px) / 3);
+    &-container {
+      overflow: hidden; // hides overflow when Swiper translates
+    }
+
+    &-list {
+      margin-bottom: 32px;
     }
   }
 }

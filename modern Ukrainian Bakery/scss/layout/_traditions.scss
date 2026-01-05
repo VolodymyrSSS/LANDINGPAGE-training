@@ -1,14 +1,19 @@
 .traditions {
-  padding-top: 96px;
+  padding-top: 40px;
+
+  @media screen and (min-width: $bp-tablet) {
+    padding-top: 96px;
+  }
 
   &__container {
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
     gap: 40px;
   }
 
   &__content {
-    min-width: 710px;
+    max-width: 710px;
   }
 
   &__title {
@@ -46,6 +51,16 @@
         font-size: 18px;
         font-weight: 400;
       }
+    }
+  }
+
+  &__image {
+    display: none;
+    border-top-left-radius: 400px;
+    border-top-right-radius: 400px;
+
+    @media screen and (min-width: $bp-tablet) {
+      display: block;
     }
   }
 }

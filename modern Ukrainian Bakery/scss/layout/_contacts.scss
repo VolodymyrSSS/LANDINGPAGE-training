@@ -1,20 +1,53 @@
 .contacts {
-  padding-bottom: 96px;
+  padding-bottom: 0;
+
+  @media screen and (min-width: $bp-tablet) {
+    padding-top: 12px;
+    padding-bottom: 22px;
+  }
+
+  @media screen and (min-width: $bp-desktop) {
+    padding-bottom: 96px;
+  }
 
   &__container {
     display: flex;
-    gap: 32px;
+    flex-direction: column;
+    gap: 24px;
+
+    @media screen and (min-width: $bp-tablet) {
+      flex-direction: row;
+      gap: 32px;
+    }
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
   }
 
   &__title {
-    font-weight: 700;
-    font-size: 62px;
+    font-weight: 600;
+    font-size: 32px;
     line-height: 1.3;
     margin-bottom: 16px;
+
+    @media screen and (min-width: $bp-tablet) {
+      font-weight: 700;
+      font-size: 36px;
+    }
+
+    @media screen and (min-width: $bp-desktop) {
+      font-size: 62px;
+    }
   }
 
   &__form-field {
-    margin-bottom: 24px;
+    margin-bottom: 16px;
+
+    @media screen and (min-width: $bp-tablet) {
+      margin-bottom: 24px;
+    }
   }
 
   &__btn {
@@ -28,7 +61,20 @@
 
   &__map {
     flex-shrink: 0;
+    margin: 0 -24px;
+    height: 176px;
     border: none;
     border-radius: 16px;
+
+    @media screen and (min-width: $bp-tablet) {
+      margin: auto;
+      width: 402px;
+      height: 500px;
+    }
+
+    @media screen and (min-width: $bp-desktop) {
+      width: 603px;
+      height: 595px;
+    }
   }
 }
